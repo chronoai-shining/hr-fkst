@@ -14,7 +14,7 @@ return {
     t.mock_command("codex", { stdout = "ok", exit_code = 0 })
 
     local result = t.run_department(
-      "departments/hello/main.lua", CRON_EVENT)
+      "departments/hello-codex/main.lua", CRON_EVENT)
 
     t.eq(result.exit_code, 0)
     t.eq(result.raises[1].queue, "hello_result")
@@ -31,7 +31,7 @@ return {
     t.mock_command("codex", { stderr = "boom", exit_code = 1 })
 
     local result = t.run_department(
-      "departments/hello/main.lua", CRON_EVENT)
+      "departments/hello-codex/main.lua", CRON_EVENT)
 
     -- A codex failure does not crash the handler; it still exits 0 and raises
     -- a result with ok=false so the failure is observable downstream.
